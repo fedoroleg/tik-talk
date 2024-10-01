@@ -1,6 +1,6 @@
 import {HttpClient} from '@angular/common/http';
 import {inject, Injectable, signal} from '@angular/core';
-import {map, switchMap, tap} from 'rxjs';
+import {map, switchMap, take, tap} from 'rxjs';
 import {CommentCreateDto, Post, PostComment, PostCreateDto} from '../interfaces/post.interface';
 
 @Injectable({
@@ -25,7 +25,10 @@ export class PostService {
   fetchPosts() {
     return this.#http.get<Post[]>(`${this.baseApiUrl}post/`)
       .pipe(
-        tap(res => this.posts.set(res))
+        tap(res => {
+          const res3 = res.slice(-10)
+          this.posts.set(res3)
+        })
       )
   }
 

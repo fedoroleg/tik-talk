@@ -36,7 +36,6 @@ export class PostFeedComponent {
 
     fromEvent(window, 'resize')
       .subscribe(() => {
-        console.log(12313)
       })
   }
 
